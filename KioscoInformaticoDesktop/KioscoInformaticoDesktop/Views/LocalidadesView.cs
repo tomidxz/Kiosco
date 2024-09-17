@@ -18,6 +18,7 @@ namespace KioscoInformaticoDesktop.Views
     {
         IGenericService<Localidad> localidadService = new GenericService<Localidad>();
         BindingSource listalocalidades = new BindingSource();
+        List<Localidad> listaAFiltrada = new List<Localidad>();
         Localidad localidadCurrent;
 
         public LocalidadesView()
@@ -31,6 +32,7 @@ namespace KioscoInformaticoDesktop.Views
         {
             {
                 listalocalidades.DataSource = await localidadService.GetAllAsync();
+                listaAFiltrada = (List<Localidad>)listalocalidades.DataSource;
             }
         }
 
@@ -85,7 +87,7 @@ namespace KioscoInformaticoDesktop.Views
             var result = MessageBox.Show($"¿Está seguro que desea eliminar la localidad {localidadCurrent.Nombre}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
- 
+
                 await localidadService.DeleteAsync(localidadCurrent.Id);
                 CargarGrilla();
             }
@@ -95,6 +97,22 @@ namespace KioscoInformaticoDesktop.Views
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             tabControl.SelectTab(tabLista);
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            FiltrarLocalidad();
+        }
+
+        private void FiltrarLocalidad()
+        {
+            var localidadesfiltradas = listaAFiltrada.Where(p => p.Nombre.Contains(txtFiltro.Text)).ToList();
+            listalocalidades.DataSource = localidadesfiltradas;
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLocalidad();
         }
     }
 }

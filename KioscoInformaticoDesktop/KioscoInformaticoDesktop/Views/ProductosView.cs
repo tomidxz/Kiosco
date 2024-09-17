@@ -16,20 +16,22 @@ namespace KioscoInformaticoDesktop.Views
     public partial class ProductosView : Form
     {
         IGenericService<Producto> productoService = new GenericService<Producto>();
-        BindingSource listaproductos = new BindingSource();
+        BindingSource listaProductos = new BindingSource();
+        List<Producto> listaAFiltrada = new List<Producto>();
         Producto productoCurrent;
 
         public ProductosView()
         {
             InitializeComponent();
-            DataGridProductos.DataSource = listaproductos;
+            DataGridProductos.DataSource = listaProductos;
             CargarGrilla();
         }
 
         private async Task CargarGrilla()
         {
             {
-                listaproductos.DataSource = await productoService.GetAllAsync();
+                listaProductos.DataSource = await productoService.GetAllAsync();
+                listaAFiltrada = (List<Producto>)listaProductos.DataSource;
             }
         }
 
@@ -79,11 +81,11 @@ namespace KioscoInformaticoDesktop.Views
             tabControl.SelectTab(tabLista);
         }
 
-      
+
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            productoCurrent = (Producto)listaproductos.Current;
+            productoCurrent = (Producto)listaProductos.Current;
             txtNombre.Text = productoCurrent.Nombre;
             numericPrecio.Value = productoCurrent.Precio;
 
@@ -96,7 +98,7 @@ namespace KioscoInformaticoDesktop.Views
             var result = MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                var producto = (Producto)listaproductos.Current;
+                var producto = (Producto)listaProductos.Current;
                 await productoService.DeleteAsync(producto.Id);
                 CargarGrilla();
             }
@@ -105,6 +107,22 @@ namespace KioscoInformaticoDesktop.Views
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            FiltrarProductos();
+        }
+
+        private void FiltrarProductos()
+        {
+            var productosFiltrados = listaAFiltrada.Where(p => p.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper())).ToList();
+            listaProductos.DataSource = productosFiltrados;
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarProductos();
         }
     }
 }
