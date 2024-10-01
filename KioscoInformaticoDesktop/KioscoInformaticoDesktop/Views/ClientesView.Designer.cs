@@ -40,6 +40,8 @@
             txtFiltro = new TextBox();
             label4 = new Label();
             tabPageAgregarEditar = new TabPage();
+            cboLocalidad = new ComboBox();
+            label5 = new Label();
             txtTelefono = new TextBox();
             label6 = new Label();
             txtDireccion = new TextBox();
@@ -180,7 +182,7 @@
             dataGridClientes.Name = "dataGridClientes";
             dataGridClientes.ReadOnly = true;
             dataGridClientes.RowHeadersWidth = 51;
-            dataGridClientes.Size = new Size(720, 445);
+            dataGridClientes.Size = new Size(720, 554);
             dataGridClientes.TabIndex = 26;
             // 
             // txtFiltro
@@ -202,6 +204,8 @@
             // 
             // tabPageAgregarEditar
             // 
+            tabPageAgregarEditar.Controls.Add(cboLocalidad);
+            tabPageAgregarEditar.Controls.Add(label5);
             tabPageAgregarEditar.Controls.Add(txtTelefono);
             tabPageAgregarEditar.Controls.Add(label6);
             tabPageAgregarEditar.Controls.Add(txtDireccion);
@@ -219,28 +223,45 @@
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
+            // cboLocalidad
+            // 
+            cboLocalidad.FormattingEnabled = true;
+            cboLocalidad.Location = new Point(362, 232);
+            cboLocalidad.Name = "cboLocalidad";
+            cboLocalidad.Size = new Size(151, 28);
+            cboLocalidad.TabIndex = 3;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(261, 240);
+            label5.Name = "label5";
+            label5.Size = new Size(77, 20);
+            label5.TabIndex = 24;
+            label5.Text = "Localidad:";
+            // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(345, 180);
+            txtTelefono.Location = new Point(362, 180);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(260, 27);
-            txtTelefono.TabIndex = 23;
+            txtTelefono.TabIndex = 2;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(261, 191);
+            label6.Location = new Point(260, 187);
             label6.Name = "label6";
-            label6.Size = new Size(76, 20);
+            label6.Size = new Size(70, 20);
             label6.TabIndex = 22;
-            label6.Text = "Teléfonos:";
+            label6.Text = "Teléfono:";
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(345, 132);
+            txtDireccion.Location = new Point(362, 132);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(260, 27);
-            txtDireccion.TabIndex = 19;
+            txtDireccion.TabIndex = 1;
             // 
             // label3
             // 
@@ -261,9 +282,10 @@
             btnCancelar.Location = new Point(458, 347);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(183, 37);
-            btnCancelar.TabIndex = 17;
+            btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
@@ -275,17 +297,17 @@
             btnGuardar.Location = new Point(270, 347);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(183, 37);
-            btnGuardar.TabIndex = 16;
+            btnGuardar.TabIndex = 4;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(345, 88);
+            txtNombre.Location = new Point(362, 88);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(260, 27);
-            txtNombre.TabIndex = 15;
+            txtNombre.TabIndex = 0;
             // 
             // label2
             // 
@@ -340,5 +362,7 @@
         private Label label6;
         private TextBox txtDireccion;
         private Label label3;
+        private Label label5;
+        private ComboBox cboLocalidad;
     }
 }

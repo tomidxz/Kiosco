@@ -17,6 +17,7 @@ namespace KioscoInformaticoDesktop.Views
     public partial class ClientesView : Form
     {
         IClienteService clienteService = new ClienteService();
+        ILocalidadService localidadService = new LocalidadService();
         BindingSource listaClientes = new BindingSource();
         List<Cliente> listaAFiltrar = new List<Cliente>();
         Cliente clienteCurrent;
@@ -25,6 +26,16 @@ namespace KioscoInformaticoDesktop.Views
             InitializeComponent();
             dataGridClientes.DataSource = listaClientes;
             CargarGrilla();
+            CargarCombo();
+        }
+
+        private async Task CargarCombo()
+        {
+            cboLocalidad.DataSource = await localidadService.GetAllAsync();
+            cboLocalidad.DisplayMember = "Nombre";
+            cboLocalidad.ValueMember = "Id";
+
+
         }
 
         private async Task CargarGrilla()
@@ -51,6 +62,7 @@ namespace KioscoInformaticoDesktop.Views
                 clienteCurrent.Nombre = txtNombre.Text;
                 clienteCurrent.Direccion = txtDireccion.Text;
                 clienteCurrent.Telefonos = txtTelefono.Text;
+                clienteCurrent.LocalidadId= (int)cboLocalidad.SelectedValue;
                 await clienteService.UpdateAsync(clienteCurrent);
                 clienteCurrent = null;
             }
@@ -61,6 +73,7 @@ namespace KioscoInformaticoDesktop.Views
                     Nombre = txtNombre.Text,
                     Direccion = txtDireccion.Text,
                     Telefonos = txtTelefono.Text,
+                    LocalidadId = (int)cboLocalidad.SelectedValue
                 };
                 await clienteService.AddAsync(cliente);
             }
@@ -77,6 +90,7 @@ namespace KioscoInformaticoDesktop.Views
             txtNombre.Text = clienteCurrent.Nombre;
             txtDireccion.Text = clienteCurrent.Direccion;
             txtTelefono.Text = clienteCurrent.Telefonos;
+            cboLocalidad.SelectedValue = clienteCurrent.LocalidadId;
             tabControlLista.SelectedTab = tabPageAgregarEditar;
         }
 
@@ -110,6 +124,16 @@ namespace KioscoInformaticoDesktop.Views
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            clienteCurrent = null;
+            txtNombre.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            cboLocalidad.SelectedIndex = 0;
+            tabControlLista.SelectedTab = tabPageLista;
         }
     }
 }
