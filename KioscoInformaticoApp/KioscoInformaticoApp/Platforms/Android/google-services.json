@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39685592695",
+    "project_id": "kioscoinformatico-4cf58",
+    "storage_bucket": "kioscoinformatico-4cf58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39685592695:android:1e8d20c0e797da1f175872",
+        "android_client_info": {
+          "package_name": "com.companyname.kioscoinformaticoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa8r01ga_S8n5iy42tt0yjVmbduxoL6QE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
