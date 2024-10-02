@@ -1,0 +1,63 @@
+﻿@page "/nuevoproducto"
+@inject IGenericService<Producto> ProductoService
+@inject NavigationManager NavigationManager
+
+<h3>Nuevo Producto</h3>
+
+@if (producto == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <EditForm Model="producto" OnValidSubmit="AgregarProducto">
+        <DataAnnotationsValidator />
+
+        <div class="form-group mb-2">
+            <label for="Nombre">Nombre:</label>
+            <InputText id="Nombre" class="form-control" @bind-Value="producto.Nombre" />
+            <ValidationMessage For="@(() => producto.Nombre)" />
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="Precio">Precio:</label>
+            <InputNumber id="Precio" class="form-control" @bind-Value="producto.Precio" />
+            <ValidationMessage For="@(() => producto.Precio)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Guardar</button>
+    </EditForm>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int IdProductoEditado { get; set; }
+
+    private Producto producto = new Producto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (IdProductoEditado != 0)
+        {
+            producto = await ProductoService.GetByIdAsync(IdProductoEditado) ?? new Producto();
+        }
+    }
+
+    private async Task AgregarProducto()
+    {
+        if (producto != null)
+        {
+            if (IdProductoEditado == 0)
+            {
+                await ProductoService.AddAsync(producto);
+            }
+            else
+            {
+                await ProductoService.UpdateAsync(producto);
+            }
+
+            NavigationManager.NavigateTo("/productos");
+        }
+    }
+}

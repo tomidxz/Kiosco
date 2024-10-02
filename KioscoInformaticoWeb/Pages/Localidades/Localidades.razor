@@ -1,5 +1,4 @@
 ﻿@page "/localidades"
-
 @inject IGenericService<Localidad> LocalidadService
 
 <h3>Localidades</h3>
@@ -15,6 +14,8 @@ else
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -23,15 +24,21 @@ else
                 <tr>
                     <td>@localidad.Id</td>
                     <td>@localidad.Nombre</td>
+                    <td>
+                        <a href="/editarlocalidad?IdLocalidadEditada=@localidad.Id">Editar</a> 
+                    </td>
+                    <td>
+                        <a href="/nuevalocalidad">Nueva Localidad</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
-
 @code {
     private List<Localidad>? localidades;
+
     protected override async Task OnInitializedAsync()
     {
         localidades = await LocalidadService.GetAllAsync();

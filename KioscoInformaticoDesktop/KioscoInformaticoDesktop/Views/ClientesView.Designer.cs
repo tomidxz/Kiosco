@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
             tabControlLista = new TabControl();
@@ -40,6 +41,8 @@
             txtFiltro = new TextBox();
             label4 = new Label();
             tabPageAgregarEditar = new TabPage();
+            dateTimeFechaNacimiento = new DateTimePicker();
+            label7 = new Label();
             cboLocalidad = new ComboBox();
             label5 = new Label();
             txtTelefono = new TextBox();
@@ -178,6 +181,16 @@
             dataGridClientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridClientes.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridClientes.Location = new Point(0, 64);
             dataGridClientes.Name = "dataGridClientes";
             dataGridClientes.ReadOnly = true;
@@ -204,6 +217,8 @@
             // 
             // tabPageAgregarEditar
             // 
+            tabPageAgregarEditar.Controls.Add(dateTimeFechaNacimiento);
+            tabPageAgregarEditar.Controls.Add(label7);
             tabPageAgregarEditar.Controls.Add(cboLocalidad);
             tabPageAgregarEditar.Controls.Add(label5);
             tabPageAgregarEditar.Controls.Add(txtTelefono);
@@ -223,10 +238,28 @@
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
+            // dateTimeFechaNacimiento
+            // 
+            dateTimeFechaNacimiento.Format = DateTimePickerFormat.Short;
+            dateTimeFechaNacimiento.Location = new Point(439, 283);
+            dateTimeFechaNacimiento.Name = "dateTimeFechaNacimiento";
+            dateTimeFechaNacimiento.Size = new Size(105, 27);
+            dateTimeFechaNacimiento.TabIndex = 26;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(261, 288);
+            label7.Name = "label7";
+            label7.Size = new Size(152, 20);
+            label7.TabIndex = 25;
+            label7.Text = "Fecha de Nacimiento:";
+            // 
             // cboLocalidad
             // 
+            cboLocalidad.DropDownStyle = ComboBoxStyle.DropDownList;
             cboLocalidad.FormattingEnabled = true;
-            cboLocalidad.Location = new Point(362, 232);
+            cboLocalidad.Location = new Point(439, 232);
             cboLocalidad.Name = "cboLocalidad";
             cboLocalidad.Size = new Size(151, 28);
             cboLocalidad.TabIndex = 3;
@@ -242,7 +275,7 @@
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(362, 180);
+            txtTelefono.Location = new Point(439, 180);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(260, 27);
             txtTelefono.TabIndex = 2;
@@ -258,7 +291,7 @@
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(362, 132);
+            txtDireccion.Location = new Point(439, 132);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(260, 27);
             txtDireccion.TabIndex = 1;
@@ -304,7 +337,7 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(362, 88);
+            txtNombre.Location = new Point(439, 84);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(260, 27);
             txtNombre.TabIndex = 0;
@@ -364,5 +397,7 @@
         private Label label3;
         private Label label5;
         private ComboBox cboLocalidad;
+        private DateTimePicker dateTimeFechaNacimiento;
+        private Label label7;
     }
 }
