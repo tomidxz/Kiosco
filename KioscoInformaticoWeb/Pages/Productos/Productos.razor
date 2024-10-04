@@ -2,7 +2,8 @@
 @page "/productos"
 @inject IGenericService<Producto> GenericService
 
-<h3>Productos</h3>
+<HeaderPage TitlePage="Productos"/>
+
 
 @if (productos == null)
 {
@@ -26,18 +27,19 @@ else
                 <tr>
                     <td>@producto.Id</td>
                     <td>@producto.Nombre</td>
-                    <td>@producto.Precio</td>
+                    <td>@producto.Precio.ToString("N2")</td>
                     <td>
                         <a href="/editarproducto?IdProductoEditado=@producto.Id">Editar</a>
-                    </td>
-                    <td>
-                        <a href="/nuevoproducto">Nuevo Producto</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+    <a href="/nuevoproducto">Nuevo Producto</a>
+
+
 @code {
     private List<Producto>? productos;
 

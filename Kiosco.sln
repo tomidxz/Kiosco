@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KioscoInformaticoBackend", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KioscoInformaticoApp", "KioscoInformaticoApp\KioscoInformaticoApp\KioscoInformaticoApp.csproj", "{115E18E8-FA52-40FF-8817-65890359EA9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KioscoInformaticoWeb", "KioscoInformaticoWeb\KioscoInformaticoWeb.csproj", "{D82D87F8-6E6E-4535-8BD0-0F34BC74B249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KioscoInformaticoWeb", "KioscoInformaticoWeb\KioscoInformaticoWeb.csproj", "{D82D87F8-6E6E-4535-8BD0-0F34BC74B249}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
