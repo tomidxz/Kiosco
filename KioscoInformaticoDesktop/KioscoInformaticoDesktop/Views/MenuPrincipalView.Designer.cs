@@ -35,9 +35,10 @@
             Bases = new FontAwesome.Sharp.IconMenuItem();
             ItemMenuLocalidades = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
+            Clientes = new FontAwesome.Sharp.IconMenuItem();
             Salir = new FontAwesome.Sharp.IconMenuItem();
             ItemMEnuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
-            Clientes = new FontAwesome.Sharp.IconMenuItem();
+            Proveedores = new FontAwesome.Sharp.IconMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             // 
             // Bases
             // 
-            Bases.DropDownItems.AddRange(new ToolStripItem[] { ItemMenuLocalidades, iconMenuItem2, Clientes });
+            Bases.DropDownItems.AddRange(new ToolStripItem[] { ItemMenuLocalidades, iconMenuItem2, Clientes, Proveedores });
             Bases.IconChar = FontAwesome.Sharp.IconChar.Database;
             Bases.IconColor = Color.Black;
             Bases.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -97,6 +98,16 @@
             iconMenuItem2.Text = "Productos";
             iconMenuItem2.Click += iconMenuItem2_Click;
             // 
+            // Clientes
+            // 
+            Clientes.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
+            Clientes.IconColor = Color.Black;
+            Clientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Clientes.Name = "Clientes";
+            Clientes.Size = new Size(234, 36);
+            Clientes.Text = "Clientes";
+            Clientes.Click += Clientes_Click;
+            // 
             // Salir
             // 
             Salir.DropDownItems.AddRange(new ToolStripItem[] { ItemMEnuSalirDelSistema });
@@ -121,15 +132,15 @@
             ItemMEnuSalirDelSistema.Text = "Salir del sistema";
             ItemMEnuSalirDelSistema.Click += ItemMEnuSalirDelSistema_Click;
             // 
-            // Clientes
+            // Proveedores
             // 
-            Clientes.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
-            Clientes.IconColor = Color.Black;
-            Clientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            Clientes.Name = "Clientes";
-            Clientes.Size = new Size(234, 36);
-            Clientes.Text = "Clientes";
-            Clientes.Click += Clientes_Click;
+            Proveedores.IconChar = FontAwesome.Sharp.IconChar.Plane;
+            Proveedores.IconColor = Color.Black;
+            Proveedores.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Proveedores.Name = "Proveedores";
+            Proveedores.Size = new Size(234, 36);
+            Proveedores.Text = "Proveedores";
+            Proveedores.Click += Proveedores_Click;
             // 
             // MenuPrincipalView
             // 
@@ -159,5 +170,6 @@
         private FontAwesome.Sharp.IconMenuItem ItemMenuLocalidades;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
         private FontAwesome.Sharp.IconMenuItem Clientes;
+        private FontAwesome.Sharp.IconMenuItem Proveedores;
     }
 }

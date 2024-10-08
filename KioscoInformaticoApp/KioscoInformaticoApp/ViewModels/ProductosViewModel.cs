@@ -23,6 +23,18 @@ namespace KioscoInformaticoApp.ViewModels
 				_=FilterProductos();
 			}
 		}
+        //porque hacemos esto, porque lo dijo Gabriel
+        //https://chatgpt.com/share/9ab527ab-34a6-426c-b7a7-362c38e460a7
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         private ObservableCollection<Producto> productos;
@@ -63,6 +75,7 @@ namespace KioscoInformaticoApp.ViewModels
 
         private async Task GetProductos()
         {
+            FilterProducts = string.Empty;
             ActivityStart= true;
             productosListToFilter= await productoService.GetAllAsync();
             Productos = new ObservableCollection<Producto>(productosListToFilter);

@@ -31,5 +31,11 @@ namespace KioscoInformaticoDesktop
             ClientesView clientesView = new ClientesView();
             clientesView.Show();
         }
+
+        private void Proveedores_Click(object sender, EventArgs e)
+        {
+            ProveedoresView proveedoresView = new ProveedoresView();
+            proveedoresView.Show();
+        }
     }
 }

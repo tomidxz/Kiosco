@@ -8,13 +8,15 @@ namespace KioscoInformaticoServices.Enums
 {
     public enum CondicionIvaEnum
     {
-        ResponsableInscripto,
-        ResponsableNoInscripto,
+        //defino un titulo con espacios para que se vea bien en el combobox
+        No_definido,
+        Responsable_Inscripto,
+        Responsable_NoInscripto,
         Exento,
-        NoResponsable,
-        ConsumidorFinal,
+        No_Responsable,
+        Consumidor_Final,
         Monotributista,
-        SujetoNoCategorizado
+        Sujeto_NoCategorizado
 
     }
 }
