@@ -90,9 +90,9 @@ public partial class KioscoContext : DbContext
                 .HasColumnName("ProveedorID");
             entity.Property(e => e.Total).HasColumnType("int(11)");
 
-            entity.HasOne(d => d.Proveedor).WithMany(p => p.Compras)
-                .HasForeignKey(d => d.ProveedorId)
-                .HasConstraintName("FK_Compras_Proveedores_ProveedorID");
+            //entity.HasOne(d => d.Proveedor).WithMany(p => p.Compras)
+            //    .HasForeignKey(d => d.ProveedorId)
+            //    .HasConstraintName("FK_Compras_Proveedores_ProveedorID");
         });
 
         modelBuilder.Entity<Detallescompra>(entity =>
@@ -278,7 +278,7 @@ public partial class KioscoContext : DbContext
             Direccion = "Calle 1",
             Telefonos = "111111111",
             Cbu = "0000003100010000000001",
-            CondicionIva = CondicionIvaEnum.ResponsableInscripto,
+            CondicionIva = CondicionIvaEnum.Responsable_Inscripto,
             LocalidadId = 1
         },
         new Proveedor
@@ -298,7 +298,7 @@ public partial class KioscoContext : DbContext
             Direccion = "Calle 3",
             Telefonos = "333333333",
             Cbu = "0000003100010000000003",
-            CondicionIva = CondicionIvaEnum.ConsumidorFinal,
+            CondicionIva = CondicionIvaEnum.Consumidor_Final,
             LocalidadId = 3
         },
         new Proveedor
@@ -318,7 +318,7 @@ public partial class KioscoContext : DbContext
             Direccion = "Calle 5",
             Telefonos = "555555555",
             Cbu = "0000003100010000000005",
-            CondicionIva = CondicionIvaEnum.NoResponsable,
+            CondicionIva = CondicionIvaEnum.No_Responsable,
             LocalidadId = 2
         },
         new Proveedor
@@ -328,7 +328,7 @@ public partial class KioscoContext : DbContext
             Direccion = "Calle 6",
             Telefonos = "666666666",
             Cbu = "0000003100010000000006",
-            CondicionIva = CondicionIvaEnum.ResponsableNoInscripto,
+            CondicionIva = CondicionIvaEnum.Responsable_NoInscripto,
             LocalidadId = 2
         },
         new Proveedor
@@ -338,7 +338,7 @@ public partial class KioscoContext : DbContext
             Direccion = "Calle 7",
             Telefonos = "777777777",
             Cbu = "0000003100010000000007",
-            CondicionIva = CondicionIvaEnum.ResponsableInscripto,
+            CondicionIva = CondicionIvaEnum.Responsable_Inscripto,
             LocalidadId = 2
         },
         new Proveedor
@@ -348,7 +348,7 @@ public partial class KioscoContext : DbContext
             Direccion = "Calle 8",
             Telefonos = "888888888",
             Cbu = "0000003100010000000008",
-            CondicionIva = CondicionIvaEnum.SujetoNoCategorizado,
+            CondicionIva = CondicionIvaEnum.Sujeto_NoCategorizado,
             LocalidadId = 2
         },
         new Proveedor
@@ -379,7 +379,7 @@ public partial class KioscoContext : DbContext
             {
                 Id = 1,
                 FormaDePago = FormaDePagoEnum.Efectivo,
-                Iva = CondicionIvaEnum.ResponsableNoInscripto,
+                Iva = CondicionIvaEnum.Responsable_NoInscripto,
                 Total = 1000,
                 Fecha = new DateTime(2021, 5, 15),
                 ProveedorId = 1
@@ -388,7 +388,7 @@ public partial class KioscoContext : DbContext
             {
                 Id = 2,
                 FormaDePago = FormaDePagoEnum.Tarjeta_Credito,
-                Iva = CondicionIvaEnum.ResponsableInscripto,
+                Iva = CondicionIvaEnum.Responsable_Inscripto,
                 Total = 2000,
                 Fecha = new DateTime(2021, 5, 16),
                 ProveedorId = 2
@@ -397,7 +397,7 @@ public partial class KioscoContext : DbContext
             {
                 Id = 3,
                 FormaDePago = FormaDePagoEnum.Tarjeta_Debito,
-                Iva = CondicionIvaEnum.ResponsableInscripto,
+                Iva = CondicionIvaEnum.Responsable_Inscripto,
                 Total = 3000,
                 Fecha = new DateTime(2021, 5, 17),
                 ProveedorId = 3
