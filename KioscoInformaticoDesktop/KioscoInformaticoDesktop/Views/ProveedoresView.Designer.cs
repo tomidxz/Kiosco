@@ -54,7 +54,7 @@
             btnGuardar = new FontAwesome.Sharp.IconButton();
             txtNombre = new TextBox();
             label2 = new Label();
-            txtCondicionIva = new TextBox();
+            cboCondicionIva = new ComboBox();
             panel1.SuspendLayout();
             tabControlLista.SuspendLayout();
             tabPageLista.SuspendLayout();
@@ -220,7 +220,7 @@
             // 
             // tabPageAgregarEditar
             // 
-            tabPageAgregarEditar.Controls.Add(txtCondicionIva);
+            tabPageAgregarEditar.Controls.Add(cboCondicionIva);
             tabPageAgregarEditar.Controls.Add(label8);
             tabPageAgregarEditar.Controls.Add(txtCbu);
             tabPageAgregarEditar.Controls.Add(label7);
@@ -364,12 +364,14 @@
             label2.TabIndex = 14;
             label2.Text = "Nombre:";
             // 
-            // txtCondicionIva
+            // cboCondicionIva
             // 
-            txtCondicionIva.Location = new Point(439, 349);
-            txtCondicionIva.Name = "txtCondicionIva";
-            txtCondicionIva.Size = new Size(260, 27);
-            txtCondicionIva.TabIndex = 28;
+            cboCondicionIva.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCondicionIva.FormattingEnabled = true;
+            cboCondicionIva.Location = new Point(439, 341);
+            cboCondicionIva.Name = "cboCondicionIva";
+            cboCondicionIva.Size = new Size(151, 28);
+            cboCondicionIva.TabIndex = 28;
             // 
             // ProveedoresView
             // 
@@ -420,6 +422,6 @@
         private Label label7;
         private TextBox txtCbu;
         private Label label8;
-        private TextBox txtCondicionIva;
+        private ComboBox cboCondicionIva;
     }
 }

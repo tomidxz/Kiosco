@@ -21,7 +21,8 @@ public partial class Proveedor
 
     public int? LocalidadId { get; set; }
 
-    //public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
 
     public virtual Localidad? Localidad { get; set; }
+
+    public bool Eliminado { get; set; } = false;
 }

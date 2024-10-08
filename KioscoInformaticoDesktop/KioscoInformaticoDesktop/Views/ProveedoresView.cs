@@ -1,4 +1,5 @@
-﻿using KioscoInformaticoServices.Interfaces;
+﻿using KioscoInformaticoServices.Enums;
+using KioscoInformaticoServices.Interfaces;
 using KioscoInformaticoServices.Models;
 using KioscoInformaticoServices.Services;
 using System;
@@ -27,6 +28,7 @@ namespace KioscoInformaticoDesktop.Views
             dataGridProveedores.DataSource = listaProveedores;
             CargarGrilla();
             CargarCombo();
+            cboCondicionIva.DataSource = Enum.GetValues(typeof(CondicionIvaEnum));
         }
 
         private async Task CargarCombo()
@@ -34,14 +36,13 @@ namespace KioscoInformaticoDesktop.Views
             cboLocalidad.DataSource = await localidadService.GetAllAsync();
             cboLocalidad.DisplayMember = "Nombre";
             cboLocalidad.ValueMember = "Id";
-
-
         }
 
         private async Task CargarGrilla()
         {
             listaProveedores.DataSource = await proveedorService.GetAllAsync(null);
             listaAFiltrar = (List<Proveedor>)listaProveedores.DataSource;
+            dataGridProveedores.Columns["localidadId"].Visible = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -64,6 +65,7 @@ namespace KioscoInformaticoDesktop.Views
                 proveedorCurrent.Telefonos = txtTelefono.Text;
                 proveedorCurrent.LocalidadId = (int)cboLocalidad.SelectedValue;
                 proveedorCurrent.Cbu = txtCbu.Text;
+                proveedorCurrent.CondicionIva= (CondicionIvaEnum)cboCondicionIva.SelectedValue;
                 await proveedorService.UpdateAsync(proveedorCurrent);
                 proveedorCurrent = null;
             }
@@ -75,6 +77,7 @@ namespace KioscoInformaticoDesktop.Views
                     Direccion = txtDireccion.Text,
                     Telefonos = txtTelefono.Text,
                     LocalidadId = (int)cboLocalidad.SelectedValue,
+                    CondicionIva = (CondicionIvaEnum) cboCondicionIva.SelectedItem,
                     Cbu = txtCbu.Text
                 };
                 await proveedorService.AddAsync(proveedor);
@@ -95,6 +98,7 @@ namespace KioscoInformaticoDesktop.Views
             txtTelefono.Text = proveedorCurrent.Telefonos;
             cboLocalidad.SelectedValue = proveedorCurrent.LocalidadId;
             txtCbu.Text = proveedorCurrent.Cbu;
+            cboCondicionIva.SelectedItem = proveedorCurrent.CondicionIva;
             tabControlLista.SelectedTab = tabPageAgregarEditar;
         }
 

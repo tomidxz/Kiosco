@@ -18,4 +18,6 @@ public partial class Detallescompra
     public int CompraId { get; set; }
 
     public virtual Producto? Producto { get; set; }
+
+    public bool Eliminado { get; set; } = false;
 }
