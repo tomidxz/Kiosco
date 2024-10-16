@@ -1,7 +1,8 @@
-﻿@page "/agregarcliente"
+﻿@page "/NuevoEditarCliente"
 @inject IGenericService<Cliente> ClienteService
 @inject IGenericService<Localidad> LocalidadService
 @inject NavigationManager NavigationManager
+@inject SweetAlertService SweetAlert
 
 <HeaderPage TitlePage="Agregando cliente" />
 
@@ -82,15 +83,21 @@ else
         {
             cliente = await ClienteService.GetByIdAsync(IdClienteEditado) ?? new Cliente();
         }
-
-        // Cargamos la lista de clientes existentes
-        clientes = await ClienteService.GetAllAsync();
-
+        else
+        {
+            cliente = new Cliente();
+        }
         localidades = await LocalidadService.GetAllAsync();
     }
 
     private async Task AgregarOActualizarCliente()
     {
+        if (cliente.LocalidadId==null)
+        {
+            await SweetAlert.FireAsync("Error", "Debe seleccionar una localidad", SweetAlertIcon.Error);
+            return;
+        }
+
         if (cliente != null)
         {
             if (IdClienteEditado == 0)

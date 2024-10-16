@@ -61,11 +61,29 @@ namespace KioscoInformaticoServices.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a true.
+        /// </summary>
+        internal static string Remoto {
+            get {
+                return ResourceManager.GetString("Remoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a https://datakioscotomi.azurewebsites.net/api/.
         /// </summary>
         internal static string UrlApi {
             get {
                 return ResourceManager.GetString("UrlApi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://localhost:7183/api/.
+        /// </summary>
+        internal static string UrlApiLocal {
+            get {
+                return ResourceManager.GetString("UrlApiLocal", resourceCulture);
             }
         }
     }
