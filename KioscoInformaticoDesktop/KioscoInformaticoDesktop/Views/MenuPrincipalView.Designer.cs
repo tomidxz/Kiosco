@@ -41,6 +41,7 @@
             localidadesToolStripMenuItem = new ToolStripMenuItem();
             Salir = new FontAwesome.Sharp.IconMenuItem();
             ItemMEnuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
+            clientesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -122,7 +123,7 @@
             // 
             // listadosToolStripMenuItem
             // 
-            listadosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { localidadesToolStripMenuItem });
+            listadosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { localidadesToolStripMenuItem, clientesToolStripMenuItem });
             listadosToolStripMenuItem.Name = "listadosToolStripMenuItem";
             listadosToolStripMenuItem.Size = new Size(77, 34);
             listadosToolStripMenuItem.Text = "Listados";
@@ -158,6 +159,13 @@
             ItemMEnuSalirDelSistema.Text = "Salir del sistema";
             ItemMEnuSalirDelSistema.Click += ItemMEnuSalirDelSistema_Click;
             // 
+            // clientesToolStripMenuItem
+            // 
+            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            clientesToolStripMenuItem.Size = new Size(224, 26);
+            clientesToolStripMenuItem.Text = "Clientes";
+            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
+            // 
             // MenuPrincipalView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -189,5 +197,6 @@
         private FontAwesome.Sharp.IconMenuItem Proveedores;
         private ToolStripMenuItem listadosToolStripMenuItem;
         private ToolStripMenuItem localidadesToolStripMenuItem;
+        private ToolStripMenuItem clientesToolStripMenuItem;
     }
 }

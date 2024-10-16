@@ -44,5 +44,11 @@ namespace KioscoInformaticoDesktop
             LocalidadesViewReport localidadesViewReport = new LocalidadesViewReport();
             localidadesViewReport.Show();
         }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClientesViewReport clientesViewReport = new ClientesViewReport();
+            clientesViewReport.Show();
+        }
     }
 }

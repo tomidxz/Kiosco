@@ -29,10 +29,14 @@ namespace KioscoInformaticoDesktop.ViewReports
 
         private async void LocalidadesViewReport_Load_1(object sender, EventArgs e)
         {
-            reporte.LocalReport.ReportEmbeddedResource = "KioscoInformaticoDesktop.Reports.LocalidadesReport.rdlc";
+            reporte.LocalReport.ReportEmbeddedResource = "KioscoInformaticoDesktop.Report.LocalidadesReport.rdlc";
             var localidades = await localidadService.GetAllAsync();
             reporte.LocalReport.DataSources.Add(new ReportDataSource("DSLocalidades", localidades));
             reporte.SetDisplayMode(DisplayMode.PrintLayout);
+            //definimos zoom al 100%
+            reporte.ZoomMode = ZoomMode.Percent;
+            reporte.ZoomPercent = 100;
+            reporte.RefreshReport();
         }
     }
 }
