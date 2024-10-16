@@ -1,0 +1,79 @@
+﻿@page "/clientes"
+@inject IGenericService<Cliente> ClienteService
+@inject SweetAlertService sweetAlert
+
+<HeaderPage TitlePage="Clientes" />
+
+@if (clientes != null)
+{
+    <NavLink href="agregarcliente">
+        Agregar cliente
+    </NavLink>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfonos</th>
+                <th>Fecha de nacimiento</th>
+                <th>Localidad</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in clientes)
+            {
+                <tr>
+                    <td>@cliente.Id</td>
+                    <td>@cliente.Nombre</td>
+                    <td>@cliente.Direccion</td>
+                    <td>@cliente.Telefonos</td>
+                    <td>@cliente.FechaNacimiento</td>
+                    <td>@cliente.Localidad</td>
+                    <td>
+                        <a href="/editarcliente?IdClienteEditado=@cliente.Id">Editar</a>
+                    </td>
+                    <td>
+                        <button title="Eliminar" class="btn btn-danger" @onclick="@(()=>Eliminar(cliente))">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p><em>Cargando...</em></p>
+}
+
+<a href="/agregarcliente">Agregar cliente</a>
+
+@code {
+    private List<Cliente> clientes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        clientes = await ClienteService.GetAllAsync();
+    }
+
+    private async void Eliminar(Cliente cliente)
+    {
+        SweetAlertResult respuesta = await sweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Borrando cliente",
+                Text = $"¿Está seguro que desea borrar al cliente {cliente.Nombre}",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Si, quiero borrarlo!",
+                CancelButtonText = "No, espera"
+            });
+        if (respuesta.IsConfirmed)
+        {
+            await ClienteService.DeleteAsync(cliente.Id);
+            clientes = await ClienteService.GetAllAsync();
+            StateHasChanged();
+        }
+    }
+}

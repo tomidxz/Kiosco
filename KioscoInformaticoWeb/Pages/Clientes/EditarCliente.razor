@@ -1,0 +1,73 @@
+﻿@page "/editarcliente"
+@inject IGenericService<ModelsCliente> ClienteService
+@inject NavigationManager NavigationManager
+@using ModelsCliente = KioscoInformaticoServices.Models.Cliente;
+
+<HeaderPage TitlePage="Editando cliente" />
+
+@if (cliente == null)
+{
+    <p><em>Obteniendo el cliente a editar...</em></p>
+}
+else
+{
+    <EditForm Model="cliente" OnValidSubmit="Guardar">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group mb-2">
+            <label for="Nombre">Nombre</label>
+            <InputText id="Nombre" class="form-control" @bind-Value="cliente.Nombre" />
+        </div>
+         <div class="form-group mb-2">
+            <label for="Direccion">Direccion</label>
+            <InputText id="Direccion" class="form-control" @bind-Value="cliente.Direccion" />
+        </div>
+        <div class="form-group mb-2">
+            <label for="Telefonos">Telefonos</label>
+            <InputText id="Telefonos" class="form-control" @bind-Value="cliente.Telefonos" />
+        </div>
+         <div class="form-group">
+            <label for="FechaNacimiento">Fecha de nacimiento</label>
+            <InputDate id="FechaNacimiento" class="form-control" @bind-Value="cliente.FechaNacimiento" />
+        </div>
+
+       
+
+        @* <div class="form-group">
+                <label for="Localidad">Localidad</label>
+                <InputText id="Localidad" class="form-control" @bind-Value="cliente.Localidad" />
+        </div> *@
+
+        
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </EditForm>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int IdClienteEditado { get; set; }
+
+    private Cliente? cliente;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cliente = await ClienteService.GetByIdAsync(IdClienteEditado);
+    }
+
+    private async Task Guardar()
+    {
+        if (cliente != null) // Verifica si el cliente no es nulo
+        {
+            await ClienteService.UpdateAsync(cliente);
+            NavigationManager.NavigateTo("/clientes");
+        }
+        else
+        {
+            // Puedes manejar un error o mostrar un mensaje si cliente es nulo
+            Console.WriteLine("El cliente es nulo. No se puede guardar.");
+        }
+    }
+}

@@ -1,0 +1,46 @@
+﻿/* Estilo general de la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse; /* Para unir los bordes de las celdas */
+    margin: 20px 0; /* Espaciado superior e inferior */
+    font-size: 16px; /* Tamaño de fuente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilos para las cabeceras */
+th {
+    background-color: #FF8C00; /* Dark Orange */
+    color: #FFF; /* White */
+    padding: 10px; /* Espaciado interno */
+    text-align: left; /* Alinear el texto a la izquierda */
+}
+
+/* Estilos para las celdas de la tabla */
+td {
+    background-color: #F5F5DC; /* Beige */
+    color: #333; /* Dark Grey */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Bordes sutiles */
+}
+
+/* Estilo para las filas alternas */
+tr:nth-child(even) {
+    background-color: #DCDCDC; /* Gainsboro (light grey) */
+}
+
+/* Efecto de hover para filas */
+tr:hover {
+    background-color: #f1f1f1; /* Color gris claro en hover */
+}
+
+/* Estilo para los enlaces */
+a {
+    color: #007BFF; /* Azul */
+    text-decoration: none; /* Sin subrayado */
+}
+
+    a:hover {
+        text-decoration: underline; /* Subrayar al pasar el mouse */
+    }
+
+/* Estilos

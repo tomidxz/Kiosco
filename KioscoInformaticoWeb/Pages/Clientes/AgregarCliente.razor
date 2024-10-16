@@ -1,0 +1,114 @@
+﻿@page "/agregarcliente"
+@inject IGenericService<Cliente> ClienteService
+@inject IGenericService<Localidad> LocalidadService
+@inject NavigationManager NavigationManager
+
+<HeaderPage TitlePage="Agregando cliente" />
+
+@if (cliente == null || localidades==null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <EditForm Model="cliente" OnValidSubmit="AgregarOActualizarCliente">
+        <DataAnnotationsValidator />
+
+        <div class="form-group mb-2">
+            <label for="Nombre">Nombre:</label>
+            <InputText id="Nombre" class="form-control" @bind-Value="cliente.Nombre" />
+            <ValidationMessage For="@(() => cliente.Nombre)" />
+        </div>
+        <div class="form-group mb-2">
+            <label for="Direccion">Direccion:</label>
+            <InputText id="Direccion" class="form-control" @bind-Value="cliente.Direccion" />
+            <ValidationMessage For="@(() => cliente.Direccion)" />
+        </div>
+        <div class="form-group mb-2">
+            <label for="Telefonos">Telefonos:</label>
+            <InputText id="Telefonos" class="form-control" @bind-Value="cliente.Telefonos" />
+            <ValidationMessage For="@(() => cliente.Telefonos)" />
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="FechaNacimiento">Fecha Nacimiento</label>
+            <InputDate id="FechaNacimiento" class="form-control" @bind-Value="cliente.FechaNacimiento" />
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="IdLocalidad">Localidad:</label>
+            <InputSelect id="IdLocalidad" class="form-control" @bind-Value="cliente.LocalidadId">
+                <option value="">Seleccione una localidad</option>
+                @foreach (var localidad in localidades)
+                {
+                    <option value="@localidad.Id">@localidad.Nombre</option>
+                }
+            </InputSelect>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Guardar</button>
+    </EditForm>
+}
+
+<h3>Clientes existentes</h3>
+@if (clientes == null || !clientes.Any())
+{
+    <p><em>No hay clientes cargados.</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var c in clientes)
+        {
+            <li>@c.Nombre</li>
+        }
+    </ul>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int IdClienteEditado { get; set; }
+
+    private Cliente cliente = new Cliente();
+    private List<Localidad>? localidades = new List<Localidad>();
+    private List<Cliente> clientes = new List<Cliente>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Si estamos editando, cargamos el cliente por su ID
+        if (IdClienteEditado != 0)
+        {
+            cliente = await ClienteService.GetByIdAsync(IdClienteEditado) ?? new Cliente();
+        }
+
+        // Cargamos la lista de clientes existentes
+        clientes = await ClienteService.GetAllAsync();
+
+        localidades = await LocalidadService.GetAllAsync();
+    }
+
+    private async Task AgregarOActualizarCliente()
+    {
+        if (cliente != null)
+        {
+            if (IdClienteEditado == 0)
+            {
+                // Agregamos un nuevo cliente
+                await ClienteService.AddAsync(cliente);
+            }
+            else
+            {
+                // Actualizamos el cliente existente
+                await ClienteService.UpdateAsync(cliente);
+            }
+
+            // Recargamos la lista de clientes
+            clientes = await ClienteService.GetAllAsync();
+
+            // Redirigimos a la lista de clientes
+            NavigationManager.NavigateTo("/clientes");
+        }
+    }
+}
