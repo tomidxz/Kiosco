@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:KioscoInformaticoApp.ViewModels"
+             x:Class="KioscoInformaticoApp.Views.ProductosEnOfertaView"
+             Title="ProductoEnOfertrasView">
+    <ContentPage.BindingContext>
+        <viewModels:ProductosViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label 
+            Text="LISTA DE PRODUCTOS EN OFERTA"
+            VerticalOptions="Center" 
+            FontSize="Header"
+            HorizontalOptions="Center" />
+        <Entry Placeholder="Buscar productos..."
+               Text="{Binding FilterProducts}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        <ActivityIndicator IsRunning="{Binding ActivityStart}"/>
+        <ScrollView HeightRequest="300" HorizontalOptions="Center">
+            <ListView 
+                      ItemsSource="{Binding Products}"
+                      SelectionMode="Single"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding GetProductsCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nombre}"
+                                  Detail="{Binding Precio}"
+                                 />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
