@@ -5,7 +5,7 @@
              x:Class="KioscoInformaticoApp.Views.ProductosEnOfertaView"
              Title="ProductoEnOfertrasView">
     <ContentPage.BindingContext>
-        <viewModels:ProductosViewModel/>
+        <viewModels:ProductosEnOfertaViewModel/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label 
