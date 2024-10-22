@@ -1,4 +1,5 @@
-﻿using KioscoInformaticoApp.Class;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using KioscoInformaticoApp.Class;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace KioscoInformaticoApp.ViewModels
 
         private void IniciarSesion(object obj)
         {
-            App.Current.MainPage.DisplayAlert("Iniciar Sesion", "Iniciando Sesion", "Aceptar");
+            WeakReferenceMessenger.Default.Send(new Message("AbrirProducto"));
         }
     }
 }
