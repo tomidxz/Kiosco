@@ -32,6 +32,7 @@
         {
             menuStrip1 = new MenuStrip();
             iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
+            ventasToolStripMenuItem = new ToolStripMenuItem();
             Bases = new FontAwesome.Sharp.IconMenuItem();
             ItemMenuLocalidades = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
@@ -39,9 +40,9 @@
             Proveedores = new FontAwesome.Sharp.IconMenuItem();
             listadosToolStripMenuItem = new ToolStripMenuItem();
             localidadesToolStripMenuItem = new ToolStripMenuItem();
+            clientesToolStripMenuItem = new ToolStripMenuItem();
             Salir = new FontAwesome.Sharp.IconMenuItem();
             ItemMEnuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
-            clientesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -58,6 +59,7 @@
             // 
             // iconMenuItem1
             // 
+            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { ventasToolStripMenuItem });
             iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.House;
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -66,6 +68,13 @@
             iconMenuItem1.Name = "iconMenuItem1";
             iconMenuItem1.Size = new Size(110, 34);
             iconMenuItem1.Text = "Principal";
+            // 
+            // ventasToolStripMenuItem
+            // 
+            ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
+            ventasToolStripMenuItem.Size = new Size(224, 26);
+            ventasToolStripMenuItem.Text = "Ventas";
+            ventasToolStripMenuItem.Click += ventasToolStripMenuItem_Click;
             // 
             // Bases
             // 
@@ -87,7 +96,7 @@
             ItemMenuLocalidades.IconSize = 30;
             ItemMenuLocalidades.ImageScaling = ToolStripItemImageScaling.None;
             ItemMenuLocalidades.Name = "ItemMenuLocalidades";
-            ItemMenuLocalidades.Size = new Size(184, 36);
+            ItemMenuLocalidades.Size = new Size(234, 36);
             ItemMenuLocalidades.Text = "Localidades";
             ItemMenuLocalidades.Click += ItemMenuLocalidades_Click;
             // 
@@ -97,7 +106,7 @@
             iconMenuItem2.IconColor = Color.Black;
             iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem2.Name = "iconMenuItem2";
-            iconMenuItem2.Size = new Size(184, 36);
+            iconMenuItem2.Size = new Size(234, 36);
             iconMenuItem2.Text = "Productos";
             iconMenuItem2.Click += iconMenuItem2_Click;
             // 
@@ -107,7 +116,7 @@
             Clientes.IconColor = Color.Black;
             Clientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Clientes.Name = "Clientes";
-            Clientes.Size = new Size(184, 36);
+            Clientes.Size = new Size(234, 36);
             Clientes.Text = "Clientes";
             Clientes.Click += Clientes_Click;
             // 
@@ -117,7 +126,7 @@
             Proveedores.IconColor = Color.Black;
             Proveedores.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Proveedores.Name = "Proveedores";
-            Proveedores.Size = new Size(184, 36);
+            Proveedores.Size = new Size(234, 36);
             Proveedores.Text = "Proveedores";
             Proveedores.Click += Proveedores_Click;
             // 
@@ -131,9 +140,16 @@
             // localidadesToolStripMenuItem
             // 
             localidadesToolStripMenuItem.Name = "localidadesToolStripMenuItem";
-            localidadesToolStripMenuItem.Size = new Size(224, 26);
+            localidadesToolStripMenuItem.Size = new Size(171, 26);
             localidadesToolStripMenuItem.Text = "Localidades";
             localidadesToolStripMenuItem.Click += localidadesToolStripMenuItem_Click;
+            // 
+            // clientesToolStripMenuItem
+            // 
+            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            clientesToolStripMenuItem.Size = new Size(171, 26);
+            clientesToolStripMenuItem.Text = "Clientes";
+            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // Salir
             // 
@@ -158,13 +174,6 @@
             ItemMEnuSalirDelSistema.Size = new Size(210, 36);
             ItemMEnuSalirDelSistema.Text = "Salir del sistema";
             ItemMEnuSalirDelSistema.Click += ItemMEnuSalirDelSistema_Click;
-            // 
-            // clientesToolStripMenuItem
-            // 
-            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(224, 26);
-            clientesToolStripMenuItem.Text = "Clientes";
-            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // MenuPrincipalView
             // 
@@ -198,5 +207,6 @@
         private ToolStripMenuItem listadosToolStripMenuItem;
         private ToolStripMenuItem localidadesToolStripMenuItem;
         private ToolStripMenuItem clientesToolStripMenuItem;
+        private ToolStripMenuItem ventasToolStripMenuItem;
     }
 }
