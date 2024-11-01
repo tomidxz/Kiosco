@@ -58,5 +58,17 @@ namespace KioscoInformaticoDesktop
             VentasView ventasView = new VentasView();
             ventasView.Show();
         }
+
+        private void facturasDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FacturasVentasViewReport facturasVentasViewReport = new FacturasVentasViewReport();
+            facturasVentasViewReport.Show();
+        }
+
+        private void iconToolHistoricoVentas_Click(object sender, EventArgs e)
+        {
+            HistoricoVentasView historicoVentasView = new HistoricoVentasView();
+            historicoVentasView.ShowDialog();
+        }
     }
 }

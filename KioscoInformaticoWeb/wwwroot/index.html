@@ -26,6 +26,51 @@
         <a href="" class="reload">Recargar</a>
         <a class="dismiss">🗙</a>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <!-- Configuración de Firebase -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjMwp-tMlZzDy66OM6G_r3xbkvBI5PEFw",
+            authDomain: "kioscoinformatico-4cf58.firebaseapp.com",
+            projectId: "kioscoinformatico-4cf58",
+            storageBucket: "kioscoinformatico-4cf58.firebasestorage.app",
+            messagingSenderId: "39685592695",
+            appId: "1:39685592695:web:f2bf936377fcf2d6175872"
+        };
+        firebase.initializeApp(firebaseConfig);
+        console.log(firebase);
+        window.firebaseAuth = {
+            signInWithEmailPassword: async function (email, password) {
+                try {
+                    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+                    return userCredential.user.uid;
+                } catch (error) {
+                    console.error("Error en autenticación:", error.message);
+                    return null;
+                }
+            },
+
+            signOut: async function () {
+                await firebase.auth().signOut();
+            }
+        };
+        window.localStorageHelper = {
+            setItem: function (key, value) {
+                localStorage.setItem(key, value);
+            },
+            getItem: function (key) {
+                return localStorage.getItem(key);
+            },
+            removeItem: function (key) {
+                localStorage.removeItem(key);
+            }
+        };
+    </script>
+ 
+
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/CurrieTechnologies.Razor.SweetAlert2/sweetAlert2.min.js"></script>
 </body>

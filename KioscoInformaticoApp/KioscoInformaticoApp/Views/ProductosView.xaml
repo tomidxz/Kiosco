@@ -25,6 +25,7 @@
 
             <ListView 
                       ItemsSource="{Binding Productos}"
+                      SelectedItem="{Binding SelectedProduct}"
                       SelectionMode="Single"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding GetProductsCommand}"
@@ -43,7 +44,13 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Margin="0,10,0,10"/>
-                    
+
+            <Button Text="Editar producto"
+                    Command="{Binding EditarProductCommand}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,10,0,10"/>   
+
 
         </VerticalStackLayout>
     </ScrollView>

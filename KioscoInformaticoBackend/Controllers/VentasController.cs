@@ -25,7 +25,10 @@ namespace KioscoInformaticoServices.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Venta>>> GetVentas()
         {
-            return await _context.Ventas.ToListAsync();
+            return await _context.Ventas.Include(venta=>venta.Cliente)
+                                        .Include(venta => venta.DetallesVenta)
+                                            .ThenInclude(detalle => detalle.Producto)
+                                 .ToListAsync();
         }
 
         // GET: api/Ventas/5
@@ -77,11 +80,20 @@ namespace KioscoInformaticoServices.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Venta>> PostVenta(Venta venta)
+            
         {
+            _context.Attach(venta.Cliente.Localidad);
+            _context.Attach(venta.Cliente);
+
+            foreach (var detalle in venta.DetallesVenta)
+            {
+                _context.Attach(detalle.Producto);
+            }
             _context.Ventas.Add(venta);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetVenta", new { id = venta.Id }, venta);
+            
         }
 
         // DELETE: api/Ventas/5

@@ -6,7 +6,7 @@ public partial class ProductosView : ContentPage
 {
 	public ProductosView()
 	{
-		InitializeComponent();
+        InitializeComponent();
 	}
     protected override void OnAppearing()
     {
@@ -15,6 +15,7 @@ public partial class ProductosView : ContentPage
         //if (viewmodel.NotaSeleccionada != null)
         //{
         viewmodel.GetProductos();
+        viewmodel.SelectedProduct = null;
         //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KioscoInformaticoDesktop.ExtensionMethods;
+using KioscoInformaticoDesktop.ViewReports;
 using KioscoInformaticoServices.Enums;
 using KioscoInformaticoServices.Interfaces;
 using KioscoInformaticoServices.Models;
@@ -22,7 +23,7 @@ namespace KioscoInformaticoDesktop.Views
         ProductoService productoService = new ProductoService();
         IGenericService<Venta> ventaService = new GenericService<Venta>();
 
-        Venta ventaCurrent = new Venta();
+        Venta venta = new Venta();
 
         public VentasView()
         {
@@ -64,7 +65,7 @@ namespace KioscoInformaticoDesktop.Views
             #endregion
             numericPrecio.Value = 0;
             numericCantidad.Value = 1;
-            dataGridDetallesVenta.DataSource = ventaCurrent.DetallesVenta.ToList();
+            dataGridDetallesVenta.DataSource = venta.DetallesVenta.ToList();
 
         }
 
@@ -100,8 +101,8 @@ namespace KioscoInformaticoDesktop.Views
                 PrecioUnitario = numericPrecio.Value
 
             };
-            ventaCurrent.DetallesVenta.Add(detalleVenta);
-            dataGridDetallesVenta.DataSource = ventaCurrent.DetallesVenta.ToList();
+            venta.DetallesVenta.Add(detalleVenta);
+            dataGridDetallesVenta.DataSource = venta.DetallesVenta.ToList();
             comboProductos.SelectedIndex = -1;
             comboProductos.Focus();
             AcualizarTotalFactura();
@@ -110,7 +111,7 @@ namespace KioscoInformaticoDesktop.Views
 
         private void AcualizarTotalFactura()
         {
-            numericTotal.Value = ventaCurrent.DetallesVenta.Sum(detalleventa => detalleventa.Cantidad * detalleventa.PrecioUnitario);
+            numericTotal.Value = venta.DetallesVenta.Sum(detalleventa => detalleventa.Cantidad * detalleventa.PrecioUnitario);
         }
 
         private void dataGridDetallesVenta_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -128,8 +129,8 @@ namespace KioscoInformaticoDesktop.Views
             }
 
             var detalleVenta = (Detallesventa)dataGridDetallesVenta.CurrentRow.DataBoundItem;
-            ventaCurrent.DetallesVenta.Remove(detalleVenta);
-            dataGridDetallesVenta.DataSource = ventaCurrent.DetallesVenta.ToList();
+            venta.DetallesVenta.Remove(detalleVenta);
+            dataGridDetallesVenta.DataSource = venta.DetallesVenta.ToList();
             AcualizarTotalFactura();
 
 
@@ -137,16 +138,18 @@ namespace KioscoInformaticoDesktop.Views
 
         private async void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
-            //cargamos los datos de la venta
-            ventaCurrent.ClienteId = (int)comboClientes.SelectedValue;
-            ventaCurrent.FormaPago = (FormaDePagoEnum)comboFormasDePago.SelectedValue;
-            ventaCurrent.Fecha = DateTime.Now;
-            ventaCurrent.Iva = ventaCurrent.Total * 0.21m;
-            ventaCurrent.Total = numericTotal.Value;
-            ventaCurrent.Cliente = null;
-            ventaCurrent.DetallesVenta.ToList().ForEach(detalleventa => detalleventa.Producto = null);
-            ventaCurrent.DetallesVenta.ToList().ForEach(detalleventa => detalleventa.Venta = null);
-            await ventaService.AddAsync(ventaCurrent);
+            ////cargamos los datos de la venta
+            //Venta ventaTemp = new Venta();
+            venta.ClienteId = (int)comboClientes.SelectedValue;
+            venta.Cliente = (Cliente)comboClientes.SelectedItem;
+            venta.FormaPago = (FormaDePagoEnum)comboFormasDePago.SelectedValue;
+            venta.Fecha = DateTime.Now;
+
+            venta.Total = numericTotal.Value;
+            venta.Iva = venta.Total * 0.21m;
+            var nuevaVenta = await ventaService.AddAsync(venta);
+            var facturaVentaViewReport = new FacturasVentasViewReport(nuevaVenta);
+            facturaVentaViewReport.ShowDialog();
 
 
         }

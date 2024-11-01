@@ -62,7 +62,7 @@ namespace KioscoInformaticoApp.ViewModels
 
         private void IniciarSesion(object obj)
         {
-            WeakReferenceMessenger.Default.Send(new Message("AbrirProducto"));
+            WeakReferenceMessenger.Default.Send(new Message("AbrirAppShell"));
         }
     }
 }

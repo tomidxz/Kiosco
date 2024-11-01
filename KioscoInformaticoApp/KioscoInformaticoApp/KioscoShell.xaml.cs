@@ -1,8 +1,8 @@
 ﻿namespace KioscoInformaticoApp
 {
-    public partial class AppShell : Shell
+    public partial class KioscoShell : Shell
     {
-        public AppShell()
+        public KioscoShell()
         {
             InitializeComponent();
         }
