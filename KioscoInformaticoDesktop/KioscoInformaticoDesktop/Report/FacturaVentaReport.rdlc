@@ -827,8 +827,8 @@
           <DataField>Cantidad</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Subtotal">
-          <DataField>Subtotal</DataField>
+        <Field Name="SubTotal">
+          <DataField>SubTotal</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>

@@ -23,6 +23,17 @@ namespace KioscoInformaticoWeb.Services
             }
             return userId;
         }
+        public async Task<string> createUserWithEmailAndPassword(string email, string password, string displayName)
+        {
+            var userId = await _jsRuntime.InvokeAsync<string>
+                ("firebaseAuth.createUserWithEmailAndPassword", email, password, displayName);
+            if (userId != null)
+            {
+                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, userId);
+                OnChangeLogin?.Invoke();
+            }
+            return userId;
+        }
 
         public async Task SignOut()
         {

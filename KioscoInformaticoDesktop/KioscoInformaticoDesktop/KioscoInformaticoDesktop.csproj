@@ -10,12 +10,14 @@
 
   <ItemGroup>
     <None Remove="Report\ClientesReport.rdlc" />
+    <None Remove="Report\FacturaCompraReport.rdlc" />
     <None Remove="Report\FacturaVentaReport.rdlc" />
     <None Remove="Report\LocalidadesReport.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Report\ClientesReport.rdlc" />
+    <EmbeddedResource Include="Report\FacturaCompraReport.rdlc" />
     <EmbeddedResource Include="Report\FacturaVentaReport.rdlc" />
     <EmbeddedResource Include="Report\LocalidadesReport.rdlc" />
   </ItemGroup>
@@ -58,10 +60,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>KioscoInformaticoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="ViewReports\FacturasComprasViewReport.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\ProveedoresView.cs">
       <SubType>Form</SubType>
@@ -81,6 +91,13 @@
 
   <ItemGroup>
     <Folder Include="Paquetes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

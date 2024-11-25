@@ -33,6 +33,7 @@
             menuStrip1 = new MenuStrip();
             iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             ventasToolStripMenuItem = new ToolStripMenuItem();
+            comprasToolStripMenuItem = new ToolStripMenuItem();
             Bases = new FontAwesome.Sharp.IconMenuItem();
             ItemMenuLocalidades = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
@@ -63,7 +64,7 @@
             // 
             // iconMenuItem1
             // 
-            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { ventasToolStripMenuItem });
+            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { ventasToolStripMenuItem, comprasToolStripMenuItem });
             iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.House;
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -76,9 +77,16 @@
             // ventasToolStripMenuItem
             // 
             ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            ventasToolStripMenuItem.Size = new Size(135, 26);
+            ventasToolStripMenuItem.Size = new Size(151, 26);
             ventasToolStripMenuItem.Text = "Ventas";
             ventasToolStripMenuItem.Click += ventasToolStripMenuItem_Click;
+            // 
+            // comprasToolStripMenuItem
+            // 
+            comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
+            comprasToolStripMenuItem.Size = new Size(151, 26);
+            comprasToolStripMenuItem.Text = "Compras";
+            comprasToolStripMenuItem.Click += comprasToolStripMenuItem_Click;
             // 
             // Bases
             // 
@@ -173,6 +181,7 @@
             Salir.Name = "Salir";
             Salir.Size = new Size(82, 34);
             Salir.Text = "Salir";
+            Salir.Click += Salir_Click;
             // 
             // ItemMEnuSalirDelSistema
             // 
@@ -182,7 +191,7 @@
             ItemMEnuSalirDelSistema.IconSize = 30;
             ItemMEnuSalirDelSistema.ImageScaling = ToolStripItemImageScaling.None;
             ItemMEnuSalirDelSistema.Name = "ItemMEnuSalirDelSistema";
-            ItemMEnuSalirDelSistema.Size = new Size(210, 36);
+            ItemMEnuSalirDelSistema.Size = new Size(234, 36);
             ItemMEnuSalirDelSistema.Text = "Salir del sistema";
             ItemMEnuSalirDelSistema.Click += ItemMEnuSalirDelSistema_Click;
             // 
@@ -249,5 +258,6 @@
         private ToolStripMenuItem facturasDeVentasToolStripMenuItem;
         private ToolStrip toolStrip1;
         private FontAwesome.Sharp.IconToolStripButton iconToolHistoricoVentas;
+        private ToolStripMenuItem comprasToolStripMenuItem;
     }
 }

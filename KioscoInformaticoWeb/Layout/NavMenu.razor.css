@@ -4,7 +4,7 @@
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background: linear-gradient(to right, #8B0000, #FF6347);
 }
 
 .navbar-brand {
@@ -80,6 +80,7 @@
     .collapse {
         /* Never collapse the sidebar for wide screens */
         display: block;
+        background: linear-gradient(to bottom, #5C0000, #A00000, #FF6347);
     }
     
     .nav-scrollable {

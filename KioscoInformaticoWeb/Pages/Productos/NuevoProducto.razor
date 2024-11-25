@@ -24,6 +24,11 @@ else
             <InputNumber id="Precio" class="form-control" @bind-Value="producto.Precio" />
             <ValidationMessage For="@(() => producto.Precio)" />
         </div>
+        <div class="form-group mb-2">
+            <label for="imagen">Imagen:</label>
+            <ImageUpload OnUploadFile="ArchivoSubido" />
+            <img class="card-img mb-2" src="@producto.Imagen" />
+        </div>
 
         <button type="submit" class="btn btn-primary mb-2">Guardar</button>
     </EditForm>
@@ -59,5 +64,15 @@ else
 
             NavigationManager.NavigateTo("/productos");
         }
+    }
+
+    private void ArchivoSubido(string urlImagen)
+
+    {
+
+        producto.Imagen = urlImagen;
+
+        StateHasChanged();
+
     }
 }

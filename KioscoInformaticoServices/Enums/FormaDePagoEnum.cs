@@ -11,6 +11,7 @@ namespace KioscoInformaticoServices.Enums
         Efectivo,
         Tarjeta_Credito,
         Tarjeta_Debito,
-        Transferencia
+        Transferencia,
+        Paypal
     }
 }

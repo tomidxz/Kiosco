@@ -25,14 +25,17 @@ namespace KioscoInformaticoServices.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Compra>>> GetCompras()
         {
-            return await _context.Compras.ToListAsync();
+            return await _context.Compras.Include(compra => compra.Proveedor)
+                                         .Include(compra => compra.DetalleCompra)
+                                          .ThenInclude(detalle => detalle.Producto)
+                                         .ToListAsync();
         }
 
         // GET: api/Compras/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Compra>> GetCompra(int id)
         {
-            var compra = await _context.Compras.FindAsync(id);
+            var compra = await _context.Compras.Include(compra =>compra.Proveedor).Include(compra=>compra.DetalleCompra).ThenInclude(detalle=>detalle.Producto).Where(compra=>compra.Id.Equals(id)).FirstOrDefaultAsync();
 
             if (compra == null)
             {
@@ -78,6 +81,13 @@ namespace KioscoInformaticoServices.Controllers
         [HttpPost]
         public async Task<ActionResult<Compra>> PostCompra(Compra compra)
         {
+            _context.Attach(compra.Proveedor.Localidad);
+            _context.Attach(compra.Proveedor);
+
+            foreach (var detalle in compra.DetalleCompra)
+            {
+                _context.Attach(detalle.Producto);
+            }
             _context.Compras.Add(compra);
             await _context.SaveChangesAsync();
 

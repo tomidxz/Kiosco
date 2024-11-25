@@ -1,0 +1,72 @@
+﻿@page "/signup"
+@inject NavigationManager NavigationManager
+@inject FirebaseAuthService AuthService
+@inject SweetAlertService SweetAlert
+<h3>Register</h3>
+
+
+    <div class="card text-center">
+        <div class="card-header">
+            Registo
+        </div>
+        <div class="card-body">
+            <form>
+
+                <div class="form-group mb-2">
+                <label class="form-label me-2" for="Nombre">Nombre:</label>
+                    <InputText id="Nombre" class="form-control" @bind-Value="name" />
+
+                </div>
+                <div class="form-group mb-2">
+                <label class="form-label me-2" for="Email">Email:</label>
+                    <InputText id="Email" class="form-control" @bind-Value="email" />
+
+                </div>
+                <div class="form-group mb-2">
+                <label class="form-label me-2" for="password">Contraseña:</label>
+                <InputText id="Password" class="form-control" @bind-Value="password" type="password" />
+
+                </div>
+                <div class="form-group mb-2">
+                <label class="form-label me-2" for="passwordverify">Verificar Contraseña:</label>
+                <InputText id="Passwordverify" class="form-control" @bind-Value="passwordverify" type="password" />
+
+                </div>
+
+                <button type="button" class="btn btn-primary mb-2" @onclick="Register">Enviar</button>
+            </form>
+        </div>
+        <div class="card-footer text-body-secondary">
+            Si si no no Kiosco Informatico
+        </div>
+    </div>
+
+@code {
+    private string name;
+    private string email;
+    private string passwordverify;
+    private string password;
+
+    private async Task Register()
+        {
+            if (password != passwordverify)
+            {
+               await SweetAlert.FireAsync("Error", "Las contraseñas no coinciden", SweetAlertIcon.Error);
+                return;
+            }
+
+            var userId = await AuthService.createUserWithEmailAndPassword(email, password, name);
+            if (userId != null)
+            {
+                await SweetAlert.FireAsync("Registro exitoso", "Usuario registrado correctamente, BIEVENIDOOO", SweetAlertIcon.Success);
+                NavigationManager.NavigateTo($"/");
+            }
+            else
+            {
+                await SweetAlert.FireAsync("Error", "Error al registrar el usuario", SweetAlertIcon.Error);
+            }
+            StateHasChanged();
+            //NavigationManager.NavigateTo($"/");
+        }
+
+}

@@ -12,7 +12,9 @@ public partial class Compra
 
     public CondicionIvaEnum Iva { get; set; }
 
-    public int Total { get; set; }
+    public decimal Ivas { get; set; }
+
+    public decimal Total { get; set; }
 
     public DateTime Fecha { get; set; }
 
@@ -21,4 +23,5 @@ public partial class Compra
     public virtual Proveedor? Proveedor { get; set; }
 
     public bool Eliminado { get; set; } = false;
+    public virtual ICollection<Detallescompra> DetalleCompra { get; set; } = new List<Detallescompra>();
 }

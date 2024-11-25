@@ -26,9 +26,19 @@ namespace KioscoInformaticoApp.ViewModels
 
         private void SettingData()
         {
-            Nombre = editProduct.Nombre;
-            Precio = editProduct.Precio;
-            Oferta = editProduct.Oferta;
+            if (editProduct == null)
+            {
+                Nombre = string.Empty;
+                Precio = 0;
+                Oferta = false;
+                return;
+            }
+            else
+            {
+                Nombre = editProduct.Nombre;
+                Precio = editProduct.Precio;
+                Oferta = editProduct.Oferta;
+            }
         }
 
         private string nombre;
@@ -98,7 +108,7 @@ namespace KioscoInformaticoApp.ViewModels
                 await productoServicw.AddAsync(producto);
             }
 
-            WeakReferenceMessenger.Default.Send(new Message("CerrarVentana"));
+            await Shell.Current.GoToAsync("//ListaProductos");
         }
     }
 }

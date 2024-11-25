@@ -12,7 +12,7 @@ namespace KioscoInformaticoDesktop
 
         private void ItemMEnuSalirDelSistema_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void ItemMenuLocalidades_Click(object sender, EventArgs e)
@@ -69,6 +69,17 @@ namespace KioscoInformaticoDesktop
         {
             HistoricoVentasView historicoVentasView = new HistoricoVentasView();
             historicoVentasView.ShowDialog();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComprasView comprasView = new ComprasView();
+            comprasView.Show();
+        }
+
+        private void Salir_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
